@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int main(void) {
-	printf("%.10lf", squareRoot(23));
+	printf("%.10lf", squareRoot(-1));
 
 	return EXIT_SUCCESS;
 }

@@ -8,6 +8,7 @@
 #ifndef MATHLIB_MATHEXPANSION_H_
 #define MATHLIB_MATHEXPANSION_H_
 #include <stdlib.h>
+#include <stdint.h>
 
 //definition of a point with x and y coordinates
 typedef struct point_t{

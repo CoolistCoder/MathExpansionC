@@ -1,5 +1,26 @@
 #include "MathExpansion.h"
 
+#define PRVNAN (*(double*)((uint64_t[]){0x7FF8000000000000ULL}))
+
+typedef enum errcode_e{
+	DIVIDE_BY_ZERO,
+	DIVIDE_BY_NEGATIVE,
+	NOT_A_TRIANGLE
+}errcode_e;
+
+static errcode_e glblErrCode = 0;
+
+static void setError(errcode_e val){
+	glblErrCode = val;
+}
+
+static void clearError(){
+	glblErrCode = 0;
+}
+
+static errcode_e getError(){
+	return glblErrCode;
+}
 
 point_t definePoint(double x, double y){
 	point_t newpoint;
@@ -34,11 +55,20 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 
 
 double squareRoot(double val){
-	double root = val/2.0;
-	double err = 0.0000001;
-	while ((root * root - val) > err || (val - root * root) > err){
-		root = (root + val / root) / 2.0;
+	double root;
+	double err;
+	if (val < 0){
+		setError(DIVIDE_BY_NEGATIVE);
+		root = PRVNAN;
 	}
+	else{
+		root = val/2.0;
+		err = 0.0000001;
+		while ((root * root - val) > err || (val - root * root) > err){
+			root = (root + val / root) / 2.0;
+		}
+	}
+	clearError();
 	return root;
 }
 
