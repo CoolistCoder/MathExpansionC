@@ -14,3 +14,19 @@ point_t* definePointAsPointer(double x, double y){
 	newpoint->y = y;
 	return newpoint;
 }
+
+triangle_t defineTriangle(point_t A, point_t B, point_t C){
+	triangle_t newtriangle;
+	newtriangle.A = A;
+	newtriangle.B = B;
+	newtriangle.C = C;
+	return newtriangle;
+}
+
+triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
+	triangle_t* newtriangle = (triangle_t*)malloc(sizeof(triangle_t));
+	newtriangle->A = A;
+	newtriangle->B = B;
+	newtriangle->C = C;
+	return newtriangle;
+}
