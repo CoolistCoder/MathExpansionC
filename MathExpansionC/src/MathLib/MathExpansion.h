@@ -27,4 +27,9 @@ point_t* definePointAsPointer(double, double);
 triangle_t defineTriangle(point_t, point_t, point_t);
 triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
 
+
+//utils
+double squareRoot(double val);
+
+
 #endif /* MATHLIB_MATHEXPANSION_H_ */

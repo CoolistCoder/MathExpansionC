@@ -30,3 +30,18 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	newtriangle->C = C;
 	return newtriangle;
 }
+
+
+
+double squareRoot(double val){
+	double root = val/2.0;
+	double err = 0.0000001;
+	while ((root * root - val) > err || (val - root * root) > err){
+		root = (root + val / root) / 2.0;
+	}
+	return root;
+}
+
+
+
+
