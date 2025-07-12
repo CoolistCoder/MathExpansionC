@@ -11,18 +11,38 @@ typedef enum errcode_e{
 
 static errcode_e glblErrCode = 0;
 
+//Name:
+//Description:
+//Inputs:
+//Outputs:
+//Side Effects:
 static void setError(errcode_e val){
 	glblErrCode = val;
 }
 
+//Name:
+//Description:
+//Inputs:
+//Outputs:
+//Side Effects:
 static void clearError(){
 	glblErrCode = 0;
 }
 
+//Name:
+//Description:
+//Inputs:
+//Outputs:
+//Side Effects:
 static errcode_e getError(){
 	return glblErrCode;
 }
 
+//Name:
+//Description:
+//Inputs:
+//Outputs:
+//Side Effects:
 static const char* getErrorString(){
 	switch(getError()){
 	case DIVIDE_BY_ZERO:
@@ -43,6 +63,11 @@ static const char* getErrorString(){
 	}
 }
 
+//Name: definePoint
+//Description: Defines a point with X and Y coordinates
+//Inputs: double x position, double y position
+//Outputs: new point object
+//Side Effects: n/a
 point_t definePoint(double x, double y){
 	point_t newpoint;
 	newpoint.x = x;
@@ -50,6 +75,11 @@ point_t definePoint(double x, double y){
 	return newpoint;
 }
 
+//Name: definePointAsPointer
+//Description: Defines a pointer to a point object
+//Inputs: double x position, double y position
+//Outputs: new pointer to a point object
+//Side Effects: n/a
 point_t* definePointAsPointer(double x, double y){
 	point_t* newpoint = (point_t*)malloc(sizeof(point_t));
 	newpoint->x = x;
@@ -57,6 +87,11 @@ point_t* definePointAsPointer(double x, double y){
 	return newpoint;
 }
 
+//Name:
+//Description:
+//Inputs:
+//Outputs:
+//Side Effects:
 triangle_t defineTriangle(point_t A, point_t B, point_t C){
 	triangle_t newtriangle;
 	newtriangle.A = A;
@@ -65,6 +100,11 @@ triangle_t defineTriangle(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
+//Name:
+//Description:
+//Inputs:
+//Outputs:
+//Side Effects:
 triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	triangle_t* newtriangle = (triangle_t*)malloc(sizeof(triangle_t));
 	newtriangle->A = A;
@@ -73,8 +113,11 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
-
-
+//Name:
+//Description:
+//Inputs:
+//Outputs:
+//Side Effects:
 double squareRoot(double val){
 	double root;
 	double err;
