@@ -1,15 +1,16 @@
 #include "MathExpansion.h"
 
+//NAN definition
 #define PRVNAN (*(double*)((uint64_t[]){0x7FF8000000000000ULL}))
 
 typedef enum errcode_e{
-	NO_ERR = 0,
-	DIVIDE_BY_ZERO,
-	SQUAREROOT_NEGATIVE,
-	NOT_A_TRIANGLE
+	NO_ERR = 0,				//no error
+	DIVIDE_BY_ZERO,			//divide by zero error
+	SQUAREROOT_NEGATIVE,	//square root of negative error
+	NOT_A_TRIANGLE			//values do not represent a triangle
 }errcode_e;
 
-static errcode_e glblErrCode = NO_ERR;
+static errcode_e glblErrCode = NO_ERR; //global error code
 
 //Name: setError
 //Description: Sets the global error code
@@ -119,23 +120,28 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 //Outputs: Double of squared value
 //Side Effects: n/a
 double squareRoot(double val){
-	double root;
-	double err;
-	if (val < 0){
+	double root;	//return value
+	double err;		//maximum error
+	if (val < 0){	//throw error if value is negative
 		setError(SQUAREROOT_NEGATIVE);
-		root = PRVNAN;
+		root = PRVNAN; //store this result if true
 	}
-	else{
-		root = val/2.0;
-		err = 0.000000001;
+	else{ //perform babylonian method
+		root = val/2.0;	//divide input in half
+		err = 0.000000001; //precision
+		//if square of root - input is greater than precision value OR
+		//the input - square of root is greater than precision value,
+		//then set the root to the (root + input) divided by the original root,
+		//then divide by 2
+		//Repeat until the root is less than the error value
 		while ((root * root - val) > err || (val - root * root) > err){
 			root = (root + val / root) / 2.0;
 		}
 	}
-	if (getError()!=NO_ERR){
+	if (getError()!=NO_ERR){ //If there is an error, print it out
 		printf("Error: %s\n", getErrorString());
 	}
-	clearError();
+	clearError(); //Reset the error code
 	return root;
 }
 
