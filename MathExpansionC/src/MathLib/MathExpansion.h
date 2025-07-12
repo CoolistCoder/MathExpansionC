@@ -8,6 +8,7 @@
 #ifndef MATHLIB_MATHEXPANSION_H_
 #define MATHLIB_MATHEXPANSION_H_
 #include <stdlib.h>
+#include <stdio.h>
 #include <stdint.h>
 
 //definition of a point with x and y coordinates
