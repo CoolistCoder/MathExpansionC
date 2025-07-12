@@ -9,40 +9,40 @@ typedef enum errcode_e{
 	NOT_A_TRIANGLE
 }errcode_e;
 
-static errcode_e glblErrCode = 0;
+static errcode_e glblErrCode = NO_ERR;
 
-//Name:
-//Description:
-//Inputs:
-//Outputs:
-//Side Effects:
+//Name: setError
+//Description: Sets the global error code
+//Inputs: Error Code enum
+//Outputs: none
+//Side Effects: Stores new error code in glblErrCode
 static void setError(errcode_e val){
 	glblErrCode = val;
 }
 
-//Name:
-//Description:
-//Inputs:
-//Outputs:
-//Side Effects:
+//Name: clearError
+//Description: Clears the global error code
+//Inputs: Error Code enum
+//Outputs: none
+//Side Effects: Resets error code in glblErrCode
 static void clearError(){
 	glblErrCode = 0;
 }
 
-//Name:
-//Description:
-//Inputs:
-//Outputs:
-//Side Effects:
+//Name: getError
+//Description: Retrieves global error's value
+//Inputs: none
+//Outputs: The enum in glblErrCode
+//Side Effects: n/a
 static errcode_e getError(){
 	return glblErrCode;
 }
 
-//Name:
-//Description:
-//Inputs:
-//Outputs:
-//Side Effects:
+//Name: getErrorString
+//Description: Returns global error's value as a C string
+//Inputs: none
+//Outputs: C string of the error
+//Side Effects: n/a
 static const char* getErrorString(){
 	switch(getError()){
 	case DIVIDE_BY_ZERO:
@@ -87,11 +87,11 @@ point_t* definePointAsPointer(double x, double y){
 	return newpoint;
 }
 
-//Name:
-//Description:
-//Inputs:
-//Outputs:
-//Side Effects:
+//Name: defineTriangle
+//Description: Defines a triangle with points A B and C
+//Inputs: Three points (A, B, C)
+//Outputs: New triangle object
+//Side Effects: n/a
 triangle_t defineTriangle(point_t A, point_t B, point_t C){
 	triangle_t newtriangle;
 	newtriangle.A = A;
@@ -100,11 +100,11 @@ triangle_t defineTriangle(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
-//Name:
-//Description:
-//Inputs:
-//Outputs:
-//Side Effects:
+//Name: defineTriangleAsPointer
+//Description: Defines a pointer to a triangle with points A B and C
+//Inputs: Three points (A, B, C)
+//Outputs: New pointer to new triangle object
+//Side Effects: n/a
 triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	triangle_t* newtriangle = (triangle_t*)malloc(sizeof(triangle_t));
 	newtriangle->A = A;
@@ -113,11 +113,11 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
-//Name:
-//Description:
-//Inputs:
-//Outputs:
-//Side Effects:
+//Name: squareRoot
+//Description: Square roots a number using babylonian method
+//Inputs: Double value to square root
+//Outputs: Double of squared value
+//Side Effects: n/a
 double squareRoot(double val){
 	double root;
 	double err;
