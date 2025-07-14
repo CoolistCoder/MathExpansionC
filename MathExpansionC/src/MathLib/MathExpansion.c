@@ -7,6 +7,7 @@ typedef enum errcode_e{
 	NO_ERR = 0,				//no error
 	DIVIDE_BY_ZERO,			//divide by zero error
 	SQUAREROOT_NEGATIVE,	//square root of negative error
+	ZERO_ROOT,				//zeroth root doesn't exist
 	NOT_A_TRIANGLE			//values do not represent a triangle
 }errcode_e;
 
@@ -54,6 +55,9 @@ static const char* getErrorString(){
 		break;
 	case NOT_A_TRIANGLE:
 		return "NOT A VALID TRIANGLE";
+		break;
+	case ZERO_ROOT:
+		return "ZERO ROOTS DON'T EXIST";
 		break;
 	case NO_ERR:
 		return "NO ERROR";
@@ -125,31 +129,66 @@ double distanceFormula(point_t a, point_t b){
 //Outputs: Double of squared value
 //Side Effects: n/a
 double square(double val){
-	return val*val;
+	return powerNth(val, 2);
 }
 
 //Name: squareRoot
-//Description: Square roots a number using babylonian method
+//Description: Square roots a number, reimplementation of nth function
 //Inputs: Double value to square root
 //Outputs: Double of square rooted value
 //Side Effects: n/a
 double squareRoot(double val){
+	return NthRoot(val, 2.0);
+}
+
+double powerNth(double val, int nth){
+	double ret = 1.0; //begin with value of 1
+	if (nth < 0){		//set up reciprocal if negative
+		val = 1/val;
+		nth *= -1;
+	}
+
+	//
+	while (nth > 0){
+		if (nth % 2 == 1){
+			ret *= val;
+		}
+		val *= val;
+		nth /= 2;
+	}
+	return ret;
+}
+
+//Name: NthRoot
+//Description: Nth roots a number using newton iteration
+//Inputs: Double value to square root, double exponent (nth)
+//Outputs: Double of square rooted value
+//Side Effects: n/a
+double NthRoot(double val, double nth){
 	double root;	//return value
 	double err;		//maximum error
-	if (val < 0){	//throw error if value is negative
+	double previous; //buffer for original root value
+	double nthIsNegative = nth < 0; //find if nth is negative
+	nth = absoluteVal(nth);			//get abs, return inverse if true
+	if (val < 0 && ((int)nth%2==0)){	//throw error if even exponent is negative
 		setError(SQUAREROOT_NEGATIVE);
 		root = PRVNAN; //store this result if true
 	}
-	else{ //perform babylonian method
-		root = val/2.0;	//divide input in half
+	else{ //perform newton iteration for nth root
+		root = val/nth;	//divide input by nth
 		err = 0.000000001; //precision
-		//if square of root - input is greater than precision value OR
-		//the input - square of root is greater than precision value,
-		//then set the root to the (root + input) divided by the original root,
-		//then divide by 2
-		//Repeat until the root is less than the error value
-		while ((root * root - val) > err || (val - root * root) > err){
-			root = (root + val / root) / 2.0;
+		if (val == 0.0){ //
+			return 0.0;
+		}
+		do{
+			previous = root;
+			//Implementation of Newton iteration
+			//xk - f(xk)/f'(xk)
+			root = (1.0 / nth) * ((nth-1)* root + val / powerNth(root, nth - 1));
+		}while (absoluteVal(root - previous) > err);
+
+		if (nthIsNegative){
+			root = 1.0/root;
 		}
 	}
 	if (getError()!=NO_ERR){ //If there is an error, print it out
@@ -159,6 +198,10 @@ double squareRoot(double val){
 	return root;
 }
 
-
-
+double absoluteVal(double val){
+	if (val < 0){
+		return val*-1.0;
+	}
+	return val;
+}
 

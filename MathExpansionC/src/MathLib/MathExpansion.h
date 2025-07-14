@@ -36,6 +36,9 @@ double distanceFormula(point_t a, point_t b);
 //utils
 double square(double val);
 double squareRoot(double val);
+double powerNth(double val, int nth);
+double NthRoot(double val, double nth);
+double absoluteVal(double val);
 
 
 #endif /* MATHLIB_MATHEXPANSION_H_ */
