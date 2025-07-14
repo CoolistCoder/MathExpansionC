@@ -3,12 +3,11 @@
 #include <stdio.h>
 
 int main(void) {
-	point_t a, b;
-	b.x = 6;
-	a.x = 0;
-	b.y = 8;
-	a.y = 0;
-	printf("%.2lf", distanceFormula(a, b));
+	point_t *a, *b;
+	a = definePointAsPointer(0, 0);
+	b = definePointAsPointer(8, 6);
+
+	printf("%.2lf", distanceFormula(*a, *b));
 
 	return EXIT_SUCCESS;
 }
