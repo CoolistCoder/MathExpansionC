@@ -148,7 +148,7 @@ double powerNth(double val, int nth){
 		nth *= -1;
 	}
 
-	//
+//
 	while (nth > 0){
 		if (nth % 2 == 1){
 			ret *= val;

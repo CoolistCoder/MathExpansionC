@@ -2,7 +2,7 @@
 #include "MathLib/MathExpansion.h"
 #include <stdio.h>
 
-int main(void) {
+int main(void) {//
 	printf("%.2lf", NthRoot(16, -2));
 	/*
 	point_t *a, *b;
