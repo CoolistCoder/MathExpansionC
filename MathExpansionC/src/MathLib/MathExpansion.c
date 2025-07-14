@@ -114,10 +114,24 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
+double distanceFormula(point_t a, point_t b){
+	//sqrt((x2-x1)^2 + (y2-y1)^2))
+	return squareRoot(square(b.x-a.x)+square(b.y-a.y));
+}
+
+//Name: square
+//Description: Squares a number
+//Inputs: Double value to square
+//Outputs: Double of squared value
+//Side Effects: n/a
+double square(double val){
+	return val*val;
+}
+
 //Name: squareRoot
 //Description: Square roots a number using babylonian method
 //Inputs: Double value to square root
-//Outputs: Double of squared value
+//Outputs: Double of square rooted value
 //Side Effects: n/a
 double squareRoot(double val){
 	double root;	//return value

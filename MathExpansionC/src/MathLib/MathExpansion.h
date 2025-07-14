@@ -29,8 +29,12 @@ point_t* definePointAsPointer(double, double);
 triangle_t defineTriangle(point_t, point_t, point_t);
 triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
 
+//formulas
+double distanceFormula(point_t a, point_t b);
+
 
 //utils
+double square(double val);
 double squareRoot(double val);
 
 
