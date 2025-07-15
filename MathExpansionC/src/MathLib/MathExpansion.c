@@ -130,19 +130,25 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 
 
 circle_t defineCircle(point_t newpoint, double radius){
-
+	circle_t circle;
+	circle.center = newpoint;
+	circle.radius = absoluteVal(radius);
+	return circle;
 }
 
 circle_t* defineCircleAsPointer(point_t newpoint, double radius){
-
+	circle_t* circle = (circle_t*)malloc(sizeof(circle_t));
+	circle->center = newpoint;
+	circle->radius = absoluteVal(radius);
+	return circle;
 }
 
-double calcCircumference(circle_t){
-
+double calcCircumference(circle_t circle){
+	return 2*getPI()*circle.radius;
 }
 
-double calcDiameter(circle_t){
-
+double calcDiameter(circle_t circle){
+	return 2*circle.radius;
 }
 
 

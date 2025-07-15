@@ -25,7 +25,7 @@ typedef struct triangle_t{
 
 //definition of a circle with Point and Radius
 typedef struct circle_t{
-	point_t circlepoint;
+	point_t center;
 	double radius;
 }circle_t;
 
