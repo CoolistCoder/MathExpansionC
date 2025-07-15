@@ -2,6 +2,7 @@
 
 //NAN definition
 #define PRVNAN (*(double*)((uint64_t[]){0x7FF8000000000000ULL}))
+#define PRVPI (double)(3.14159265359) //define as macro to assign label to value
 
 typedef enum errcode_e{
 	NO_ERR = 0,				//no error
@@ -66,6 +67,15 @@ static const char* getErrorString(){
 		return "NO ERROR";
 		break;
 	}
+}
+
+//Name: getPI
+//Description: Returns PI macro as double
+//Inputs: none
+//Outputs: PI as double
+//Side Effects: n/a
+double getPI(){
+	return PRVPI;
 }
 
 //Name: definePoint

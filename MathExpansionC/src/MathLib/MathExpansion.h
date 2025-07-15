@@ -23,6 +23,9 @@ typedef struct triangle_t{
 	point_t C;
 }triangle_t;
 
+//getters
+double getPI();
+
 point_t definePoint(double, double);
 point_t* definePointAsPointer(double, double);
 
@@ -32,7 +35,6 @@ triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
 //formulas
 double distanceFormula(point_t a, point_t b);
 
-//
 //utils
 double square(double val);
 double squareRoot(double val);

@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int main(void) {//
-	printf("%.2lf", NthRoot(16, -2));
+	printf("%.14lf", getPI());
 	/*
 	point_t *a, *b;
 	a = definePointAsPointer(0, 0);
