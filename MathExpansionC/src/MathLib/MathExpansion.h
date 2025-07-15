@@ -27,7 +27,7 @@ typedef struct triangle_t{
 typedef struct circle_t{
 	point_t circlepoint;
 	double radius;
-};
+}circle_t;
 
 //getters
 double getPI();
@@ -38,7 +38,10 @@ point_t* definePointAsPointer(double, double);
 triangle_t defineTriangle(point_t, point_t, point_t);
 triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
 
-
+circle_t defineCircle(point_t newpoint, double radius);
+circle_t* defineCircleAsPointer(point_t newpoint, double radius);
+double calcCircumference(circle_t);
+double calcDiameter(circle_t);
 
 //formulas
 double distanceFormula(point_t a, point_t b);

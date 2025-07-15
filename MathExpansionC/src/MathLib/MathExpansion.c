@@ -128,6 +128,25 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
+
+circle_t defineCircle(point_t newpoint, double radius){
+
+}
+
+circle_t* defineCircleAsPointer(point_t newpoint, double radius){
+
+}
+
+double calcCircumference(circle_t){
+
+}
+
+double calcDiameter(circle_t){
+
+}
+
+
+
 double distanceFormula(point_t a, point_t b){
 	//sqrt((x2-x1)^2 + (y2-y1)^2))
 	return squareRoot(square(b.x-a.x)+square(b.y-a.y));
