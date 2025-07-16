@@ -4,7 +4,7 @@
 
 int main(void) {
 	circle_t circle = defineCircle(definePoint(0, 0), 5);
-	printf("%.10lf", calcCircumference(circle));
+	printf("%.10lf", calcCircleArea(circle));
 
 	return EXIT_SUCCESS;
 }

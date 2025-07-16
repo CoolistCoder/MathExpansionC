@@ -40,9 +40,10 @@ triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
 
 circle_t defineCircle(point_t newpoint, double radius);
 circle_t* defineCircleAsPointer(point_t newpoint, double radius);
-double calcCircumference(circle_t);
-double calcDiameter(circle_t);
-double calcArc(circle_t, double theta);
+double calcCircleCircumference(circle_t);
+double calcCircleDiameter(circle_t);
+double calcCircleArc(circle_t, double theta);
+double calcCircleArea(circle_t);
 
 //formulas
 double distanceFormula(point_t a, point_t b);

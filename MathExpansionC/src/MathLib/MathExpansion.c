@@ -143,16 +143,20 @@ circle_t* defineCircleAsPointer(point_t newpoint, double radius){
 	return circle;
 }
 
-double calcCircumference(circle_t circle){
+double calcCircleCircumference(circle_t circle){
 	return 2*getPI()*circle.radius;
 }
 
-double calcDiameter(circle_t circle){
+double calcCircleDiameter(circle_t circle){
 	return 2*circle.radius;
 }
 
-double calcArc(circle_t circle, double theta){
-	return (theta/360.0)*calcCircumference(circle);
+double calcCircleArc(circle_t circle, double theta){
+	return (theta/360.0)*calcCircleCircumference(circle);
+}
+
+double calcCircleArea(circle_t circle){
+	return getPI()*square(circle.radius);
 }
 
 double distanceFormula(point_t a, point_t b){
