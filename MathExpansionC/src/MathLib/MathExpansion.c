@@ -151,7 +151,9 @@ double calcDiameter(circle_t circle){
 	return 2*circle.radius;
 }
 
-
+double calcArc(circle_t circle, double theta){
+	return (theta/360.0)*calcCircumference(circle);
+}
 
 double distanceFormula(point_t a, point_t b){
 	//sqrt((x2-x1)^2 + (y2-y1)^2))

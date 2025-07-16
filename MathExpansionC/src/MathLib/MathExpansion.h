@@ -42,6 +42,7 @@ circle_t defineCircle(point_t newpoint, double radius);
 circle_t* defineCircleAsPointer(point_t newpoint, double radius);
 double calcCircumference(circle_t);
 double calcDiameter(circle_t);
+double calcArc(circle_t, double theta);
 
 //formulas
 double distanceFormula(point_t a, point_t b);
