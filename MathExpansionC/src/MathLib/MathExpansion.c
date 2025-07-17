@@ -164,6 +164,11 @@ double distanceFormula(point_t a, point_t b){
 	return squareRoot(square(b.x-a.x)+square(b.y-a.y));
 }
 
+point_t midpointFormula(point_t a, point_t b){
+	//(x1+x2)/2, (y1+y2)/2
+	return definePoint((a.x+b.x)/2, (a.y+b.y)/2);
+}
+
 //Name: square
 //Description: Squares a number
 //Inputs: Double value to square
