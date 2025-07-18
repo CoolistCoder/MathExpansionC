@@ -45,7 +45,9 @@ double calcCircleDiameter(circle_t);
 double calcCircleArc(circle_t, double theta);
 double calcCircleArea(circle_t);
 
-unsigned double calcFactorial(int n);
+double calcFactorial(int n);
+double sine(double theta);
+double cosine(double theta);
 
 //formulas
 double distanceFormula(point_t a, point_t b);

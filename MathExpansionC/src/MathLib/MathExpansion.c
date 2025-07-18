@@ -159,12 +159,50 @@ double calcCircleArea(circle_t circle){
 	return getPI()*square(circle.radius);
 }
 
-unsigned double calcFactorial(int n){
-	unsigned double factor = 1;
+double calcFactorial(int n){
+	double factor = 1;
 	for (int i=1; i<=n; ++i){
-		factor*=1;
+		factor*=i;
 	}
 	return factor;
+}
+
+double sine(double theta){
+	//Normalize using periodicity
+	while (theta>getPI()){
+		theta -= 2*getPI();
+	}
+	while (theta<getPI()){
+		theta += 2*getPI();
+	}
+
+	//Perform taylor series approximation
+	double ret = 0;
+	for (int i=0; i<20; ++i){
+		int sign = (i%2==0) ? 1 : -1;
+		double term = sign * (powerNth(theta,2*i+1)/calcFactorial(2*i+1));
+		ret += term;
+	}
+	return ret;
+}
+
+double cosine(double theta){
+	//Normalize using periodicity
+	while (theta>getPI()){
+		theta -= 2*getPI();
+	}
+	while (theta<getPI()){
+		theta += 2*getPI();
+	}
+
+	//Perform taylor series approximation
+	double ret = 0;
+	for (int i=0; i<20; ++i){
+		int sign = (i%2==0) ? 1 : -1;
+		double term = sign * (powerNth(theta,2*i)/calcFactorial(2*i));
+		ret += term;
+	}
+	return ret;
 }
 
 double distanceFormula(point_t a, point_t b){
