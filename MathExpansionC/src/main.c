@@ -5,7 +5,7 @@
 int main(void) {
 
 
-	printf("%.10lf", cosine(10));
+	printf("%.10lf", tangent(10));
 
 	return EXIT_SUCCESS;
 }

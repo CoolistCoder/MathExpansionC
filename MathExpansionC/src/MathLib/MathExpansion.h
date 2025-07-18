@@ -48,6 +48,7 @@ double calcCircleArea(circle_t);
 double calcFactorial(int n);
 double sine(double theta);
 double cosine(double theta);
+double tangent(double theta);
 
 //formulas
 double distanceFormula(point_t a, point_t b);

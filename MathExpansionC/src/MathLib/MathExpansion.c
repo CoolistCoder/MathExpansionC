@@ -205,6 +205,20 @@ double cosine(double theta){
 	return ret;
 }
 
+double tangent(double theta){
+	double rise = sine(theta);
+	double run = cosine(theta);
+	double ret = 0;
+	if (run == 0){
+		setError(DIVIDE_BY_ZERO);
+		ret = PRVNAN;
+	}
+	else{
+		ret = rise/run;
+	}
+	return ret;
+}
+
 double distanceFormula(point_t a, point_t b){
 	//sqrt((x2-x1)^2 + (y2-y1)^2))
 	return squareRoot(square(b.x-a.x)+square(b.y-a.y));
