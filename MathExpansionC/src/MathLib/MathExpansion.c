@@ -159,6 +159,14 @@ double calcCircleArea(circle_t circle){
 	return getPI()*square(circle.radius);
 }
 
+unsigned double calcFactorial(int n){
+	unsigned double factor = 1;
+	for (int i=1; i<=n; ++i){
+		factor*=1;
+	}
+	return factor;
+}
+
 double distanceFormula(point_t a, point_t b){
 	//sqrt((x2-x1)^2 + (y2-y1)^2))
 	return squareRoot(square(b.x-a.x)+square(b.y-a.y));
