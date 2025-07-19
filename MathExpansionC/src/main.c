@@ -6,7 +6,7 @@
 int main(void) {
 
 
-	printf("%.100lf", sine(getPI()));
+	printf("%.100lf", 1.00040000000000000355);
 
 	return EXIT_SUCCESS;
 }

@@ -345,21 +345,21 @@ double absoluteVal(double val){
 }
 
 double roundToNearest(double val){
-	const double precision = 0.0001;
-	int intval = (int)val;
-	if (val<0){
-		val += absoluteVal(intval);
-	}
-	else{
-		val -= absoluteVal(intval);
-	}
+	const double precision = 0.00001;
+	double quotient = val/precision;
+	int quotientRounded;
+	double scale = 1.0/precision;
 
-	if (absoluteVal(val)<precision){
-		val = 0.000;
+
+	if (val>=0){
+		quotientRounded = (double)((int)(quotient+0.5));
 	}
 	else{
-		val = precision;
+		quotientRounded = (double)((int)(quotient-0.5));
 	}
+	val = quotientRounded*precision;
+	val = (double)((int)(val*scale+0.5));
+	val = val/scale;
 
 	return val;
 }
