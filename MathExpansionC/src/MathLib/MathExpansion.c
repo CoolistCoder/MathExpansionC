@@ -216,7 +216,29 @@ double tangent(double theta){
 	else{
 		ret = rise/run;
 	}
+	if (getError()!=NO_ERR)
+		printf("Error: %s\n", getErrorString());
+	clearError();
 	return ret;
+}
+
+double cosecant(double theta){
+	double SIN = sine(theta);
+	if (SIN==0){
+		setError(DIVIDE_BY_ZERO);
+		SIN=PRVNAN;
+	}
+	else{
+		SIN = 1/sine(theta);
+	}
+	if (getError()!=NO_ERR)
+			printf("Error: %s\n", getErrorString());
+	clearError();
+	return SIN;
+}
+
+double secant(double theta){
+
 }
 
 double distanceFormula(point_t a, point_t b){

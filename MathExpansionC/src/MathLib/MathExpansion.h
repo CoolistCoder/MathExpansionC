@@ -49,6 +49,8 @@ double calcFactorial(int n);
 double sine(double theta);
 double cosine(double theta);
 double tangent(double theta);
+double cosecant(double theta);
+double secant(double theta);
 
 //formulas
 double distanceFormula(point_t a, point_t b);
