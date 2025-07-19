@@ -344,3 +344,23 @@ double absoluteVal(double val){
 	return val;
 }
 
+double roundToNearest(double val){
+	const double precision = 0.0001;
+	int intval = (int)val;
+	if (val<0){
+		val += absoluteVal(intval);
+	}
+	else{
+		val -= absoluteVal(intval);
+	}
+
+	if (absoluteVal(val)<precision){
+		val = 0.000;
+	}
+	else{
+		val = precision;
+	}
+
+	return val;
+}
+

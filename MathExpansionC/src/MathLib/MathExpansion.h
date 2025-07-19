@@ -63,6 +63,7 @@ double squareRoot(double val);
 double powerNth(double val, int nth);
 double NthRoot(double val, double nth);
 double absoluteVal(double val);
+double roundToNearest(double val);
 
 
 #endif /* MATHLIB_MATHEXPANSION_H_ */
