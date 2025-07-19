@@ -229,7 +229,7 @@ double cosecant(double theta){
 		SIN=PRVNAN;
 	}
 	else{
-		SIN = 1/sine(theta);
+		SIN = 1/SIN;
 	}
 	if (getError()!=NO_ERR)
 			printf("Error: %s\n", getErrorString());
@@ -238,7 +238,18 @@ double cosecant(double theta){
 }
 
 double secant(double theta){
-
+	double COS = cosine(theta);
+	if (COS==0){
+		setError(DIVIDE_BY_ZERO);
+		COS=PRVNAN;
+	}
+	else{
+		COS = 1/COS;
+	}
+	if (getError()!=NO_ERR)
+			printf("Error: %s\n", getErrorString());
+	clearError();
+	return COS;
 }
 
 double distanceFormula(point_t a, point_t b){

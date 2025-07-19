@@ -6,7 +6,7 @@
 int main(void) {
 
 
-	printf("%.10lf", tangent(getPI()/2));
+	printf("%.100lf", sine(getPI()));
 
 	return EXIT_SUCCESS;
 }
