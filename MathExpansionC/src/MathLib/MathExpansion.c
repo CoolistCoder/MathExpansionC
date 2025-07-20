@@ -128,7 +128,11 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
-
+//Name: defineCircle
+//Description: Defines a circle with point center and radius r
+//Inputs: point newpoint (center), double radius (r)
+//Outputs: New circle object
+//Side Effects: n/a
 circle_t defineCircle(point_t newpoint, double radius){
 	circle_t circle;
 	circle.center = newpoint;
@@ -136,6 +140,11 @@ circle_t defineCircle(point_t newpoint, double radius){
 	return circle;
 }
 
+//Name: defineCircleAsPointer
+//Description: Defines a pointer to a circle with point center and radius r
+//Inputs: point newpoint (center), double radius (r)
+//Outputs: New pointer to circle object
+//Side Effects: n/a
 circle_t* defineCircleAsPointer(point_t newpoint, double radius){
 	circle_t* circle = (circle_t*)malloc(sizeof(circle_t));
 	circle->center = newpoint;
@@ -143,22 +152,47 @@ circle_t* defineCircleAsPointer(point_t newpoint, double radius){
 	return circle;
 }
 
+//Name: calcCircleCircumference
+//Description: Calculates the circumference of a circle
+//Inputs: Any circle object
+//Outputs: double of circle's circumference
+//Side Effects: n/a
 double calcCircleCircumference(circle_t circle){
 	return 2*getPI()*circle.radius;
 }
 
+//Name: calcCircleDiameter
+//Description: Calculates the diameter of a circle
+//Inputs: Any circle object
+//Outputs: double of circle's diameter
+//Side Effects: n/a
 double calcCircleDiameter(circle_t circle){
 	return 2*circle.radius;
 }
 
+//Name: calcCircleArc
+//Description: Calculates the arc of a circle
+//Inputs: Any circle object
+//Outputs: double of circle's arc
+//Side Effects: n/a
 double calcCircleArc(circle_t circle, double theta){
 	return (theta/360.0)*calcCircleCircumference(circle);
 }
 
+//Name: calcCircleArea
+//Description: Calculates the area of a circle
+//Inputs: Any circle object
+//Outputs: double of circle's area
+//Side Effects: n/a
 double calcCircleArea(circle_t circle){
 	return getPI()*square(circle.radius);
 }
 
+//Name: calcFactorial
+//Description: Calculates the factorial of a whole number
+//Inputs: An integer (n)
+//Outputs: The factorial up to n
+//Side Effects: n/a
 double calcFactorial(int n){
 	double factor = 1;
 	for (int i=1; i<=n; ++i){
@@ -167,6 +201,11 @@ double calcFactorial(int n){
 	return factor;
 }
 
+//Name: sine
+//Description: Calculates an approximation of sine
+//Inputs: double theta value
+//Outputs: double closest approximation to sine
+//Side Effects: n/a
 double sine(double theta){
 	//Normalize using periodicity
 	while (theta>getPI()){
@@ -186,6 +225,11 @@ double sine(double theta){
 	return ret;
 }
 
+//Name: cosine
+//Description: Calculates an approximation of cosine
+//Inputs: double theta value
+//Outputs: double closest approximation to cosine
+//Side Effects: n/a
 double cosine(double theta){
 	//Normalize using periodicity
 	while (theta>getPI()){
@@ -205,6 +249,11 @@ double cosine(double theta){
 	return ret;
 }
 
+//Name: tangent
+//Description: Calculates an approximation of tangent
+//Inputs: double theta value
+//Outputs: double The approximation of tangent
+//Side Effects: n/a
 double tangent(double theta){
 	double rise = sine(theta);
 	double run = cosine(theta);
@@ -222,6 +271,11 @@ double tangent(double theta){
 	return ret;
 }
 
+//Name: cosecant
+//Description: Calculates an approximation of cosecant
+//Inputs: double theta value
+//Outputs: double The approximation of cosecant
+//Side Effects: n/a
 double cosecant(double theta){
 	double SIN = sine(theta);
 	if (SIN==0){
@@ -237,6 +291,11 @@ double cosecant(double theta){
 	return SIN;
 }
 
+//Name: secant
+//Description: Calculates an approximation of secant
+//Inputs: double theta value
+//Outputs: double The approximation of secant
+//Side Effects: n/a
 double secant(double theta){
 	double COS = cosine(theta);
 	if (COS==0){
@@ -252,11 +311,21 @@ double secant(double theta){
 	return COS;
 }
 
+//Name: distanceFormula
+//Description: calculates the distance between two points
+//Inputs: Two points a and b
+//Outputs: double of distance between both points
+//Side Effects: n/a
 double distanceFormula(point_t a, point_t b){
 	//sqrt((x2-x1)^2 + (y2-y1)^2))
 	return squareRoot(square(b.x-a.x)+square(b.y-a.y));
 }
 
+//Name: midpointFormula
+//Description: calculates the midpoint between two points
+//Inputs: Two points a and b
+//Outputs: point midpoint between both points
+//Side Effects: n/a
 point_t midpointFormula(point_t a, point_t b){
 	//(x1+x2)/2, (y1+y2)/2
 	return definePoint((a.x+b.x)/2, (a.y+b.y)/2);
@@ -280,6 +349,11 @@ double squareRoot(double val){
 	return NthRoot(val, 2.0);
 }
 
+//Name: powerNth
+//Description: retrieves the nth power of a number
+//Inputs: Double value, int nth power
+//Outputs: double value to the nth power
+//Side Effects: n/a
 double powerNth(double val, int nth){
 	double ret = 1.0; //begin with value of 1
 	if (nth < 0){		//set up reciprocal if negative
@@ -287,13 +361,12 @@ double powerNth(double val, int nth){
 		nth *= -1;
 	}
 
-//
 	while (nth > 0){
-		if (nth % 2 == 1){
+		if (nth % 2 == 1){ //mult into the return value
 			ret *= val;
 		}
-		val *= val;
-		nth /= 2;
+		val *= val;		//mult val by square
+		nth /= 2;		//divide the nth in half
 	}
 	return ret;
 }
@@ -337,6 +410,11 @@ double NthRoot(double val, double nth){
 	return root;
 }
 
+//Name: absoluteVal
+//Description: Absolute value of a number
+//Inputs: double value
+//Outputs: Absolute value of the value passed in
+//Side Effects: n/a
 double absoluteVal(double val){
 	if (val < 0){
 		return val*-1.0;
@@ -344,18 +422,22 @@ double absoluteVal(double val){
 	return val;
 }
 
-double roundToNearest(double val){
-	const double precision = 0.00001;
+//Name: roundToNearest
+//Description: Value to round based on precision
+//Inputs: double value, double precision
+//Outputs: nearest value to the value passed in
+//Side Effects: n/a
+double roundToNearest(double val, double precision){
 	double quotient = val/precision;
 	int quotientRounded;
 	double scale = 1.0/precision;
 
 
 	if (val>=0){
-		quotientRounded = (double)((int)(quotient+0.5));
+		quotientRounded = (double)((int)(quotient+0.6));
 	}
 	else{
-		quotientRounded = (double)((int)(quotient-0.5));
+		quotientRounded = (double)((int)(quotient-0.4));
 	}
 	val = quotientRounded*precision;
 	val = (double)((int)(val*scale+0.5));
