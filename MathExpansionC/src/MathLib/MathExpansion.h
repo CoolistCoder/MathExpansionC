@@ -11,6 +11,16 @@
 #include <stdio.h>
 #include <stdint.h>
 
+//definition of point precision for round functions
+typedef enum prec_e{
+	TENTH,
+	HUNDREDTH,
+	THOUSANDTH,
+	TENTHOUSANDTH,
+	HUNDREDTHOUSANDTH,
+	MILLIONTH
+}prec_e;
+
 //definition of a point with x and y coordinates
 typedef struct point_t{
 	double x, y;
@@ -63,7 +73,9 @@ double squareRoot(double val);
 double powerNth(double val, int nth);
 double NthRoot(double val, double nth);
 double absoluteVal(double val);
-double roundToNearest(double val, double precision);
+double roundToNearestPrecision(double val, double precision);
+double roundToNearest(double val, prec_e precision);
+double getRoundPlace(prec_e precision);
 
 
 #endif /* MATHLIB_MATHEXPANSION_H_ */

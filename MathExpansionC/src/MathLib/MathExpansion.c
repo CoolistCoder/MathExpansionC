@@ -422,12 +422,12 @@ double absoluteVal(double val){
 	return val;
 }
 
-//Name: roundToNearest
+//Name: roundToNearestPrecision
 //Description: Value to round based on precision
 //Inputs: double value, double precision
-//Outputs: nearest value to the value passed in
+//Outputs: double nearest value to the value passed in
 //Side Effects: n/a
-double roundToNearest(double val, double precision){
+double roundToNearestPrecision(double val, double precision){
 	double quotient = val/precision;
 	int quotientRounded;
 	double scale = 1.0/precision;
@@ -446,3 +446,47 @@ double roundToNearest(double val, double precision){
 	return val;
 }
 
+//Name: roundToNearest
+//Description: Value to round based on precision enum
+//Inputs: double value, prec_e precision
+//Outputs: double nearest value to the value passed in
+//Side Effects: n/a
+double roundToNearest(double val, prec_e precision){
+	return roundToNearestPrecision(val, getRoundPlace(precision));
+}
+
+//Name: getRoundPlace
+//Description: Converts the prec_e enum to a decimal
+//Inputs: precision enum
+//Outputs: double corresponding to decimal place
+//Side Effects: n/a
+double getRoundPlace(prec_e precision){
+	const double tenth = 0.1;
+	const double hundredth = 0.01;
+	const double thousandth = 0.001;
+	const double tenthousandth = 0.0001;
+	const double hundredthousandth = 0.00001;
+	const double millionth = 0.000001;
+
+	switch(precision){
+	case TENTH:
+		return tenth;
+		break;
+	case HUNDREDTH:
+		return hundredth;
+		break;
+	case THOUSANDTH:
+		return thousandth;
+		break;
+	case TENTHOUSANDTH:
+		return tenthousandth;
+		break;
+	case HUNDREDTHOUSANDTH:
+		return hundredthousandth;
+		break;
+	case MILLIONTH:
+		return millionth;
+		break;
+	}
+	return tenth;
+}

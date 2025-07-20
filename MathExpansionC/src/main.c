@@ -6,7 +6,7 @@
 int main(void) {
 
 
-	printf("%.3lf", roundToNearest(12.06, 0.1));
+	printf("%.3lf", roundToNearest(12.042, TENTH));
 
 	return EXIT_SUCCESS;
 }
