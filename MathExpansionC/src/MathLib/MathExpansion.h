@@ -11,6 +11,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
+//Versions
+#ifndef MATHEX_VER_ALPHA
+#define MATHEX_VER_ALPHA 0
+#endif
+
 //definition of point precision for round functions
 typedef enum prec_e{
 	TENTH,
