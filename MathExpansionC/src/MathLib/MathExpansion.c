@@ -326,6 +326,10 @@ double cotangent(double theta){
 	return TAN;
 }
 
+double radiansToDegrees(double theta){
+	return theta*(180.0f/getPI());
+}
+
 //Name: distanceFormula
 //Description: calculates the distance between two points
 //Inputs: Two points a and b

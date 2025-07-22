@@ -67,6 +67,7 @@ double tangent(double theta);
 double cosecant(double theta);
 double secant(double theta);
 double cotangent(double theta);
+double radiansToDegrees(double theta);
 
 //formulas
 double distanceFormula(point_t a, point_t b);

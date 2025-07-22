@@ -6,7 +6,7 @@
 int main(void) {
 
 
-	printf("%.3lf", roundToNearest(12.042, TENTH));
+	printf("%.3lf", radiansToDegrees(0.5236));
 
 	return EXIT_SUCCESS;
 }
