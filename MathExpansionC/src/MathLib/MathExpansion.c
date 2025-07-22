@@ -311,6 +311,21 @@ double secant(double theta){
 	return COS;
 }
 
+double cotangent(double theta){
+	double TAN = tangent(theta);
+	if (TAN==0){
+		setError(DIVIDE_BY_ZERO);
+		TAN=PRVNAN;
+	}
+	else{
+		TAN = 1/TAN;
+	}
+	if (getError()!=NO_ERR)
+			printf("Error: %s\n", getErrorString());
+	clearError();
+	return TAN;
+}
+
 //Name: distanceFormula
 //Description: calculates the distance between two points
 //Inputs: Two points a and b
