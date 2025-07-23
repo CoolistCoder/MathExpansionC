@@ -44,6 +44,13 @@ typedef struct circle_t{
 	double radius;
 }circle_t;
 
+//definition of an ellipse
+typedef struct ellipse_t{
+	point_t center;
+	double xAxis;
+	double yAxis;
+}ellipse_t;
+
 //definition of a cylinder with circle and height
 typedef struct cylinder_t{
 	circle_t circle;
@@ -70,6 +77,7 @@ cylinder_t defineCylinder(circle_t, double);
 cylinder_t* defineCylinderAsPointer(circle_t, double);
 double calcCylinderVolume(cylinder_t);
 
+ellipse_t defineEllipse(point_t, double, double);
 
 double calcFactorial(int n);
 double sine(double theta);

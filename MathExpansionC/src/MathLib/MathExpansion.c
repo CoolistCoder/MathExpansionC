@@ -219,6 +219,15 @@ double calcCylinderVolume(cylinder_t cylinder){
 	return (calcCircleArea(cylinder.circle)*cylinder.height);
 }
 
+
+ellipse_t defineEllipse(point_t center, double xAxis, double yAxis){
+	ellipse_t ellipse;
+	ellipse.center = center;
+	ellipse.xAxis = absoluteVal(xAxis);
+	ellipse.yAxis = absoluteVal(yAxis);
+	return ellipse;
+}
+
 //Name: sine
 //Description: Calculates an approximation of sine
 //Inputs: double theta value
