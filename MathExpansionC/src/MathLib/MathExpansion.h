@@ -44,6 +44,12 @@ typedef struct circle_t{
 	double radius;
 }circle_t;
 
+//definition of a cylinder with circle and height
+typedef struct cylinder_t{
+	circle_t circle;
+	double height;
+}cylinder_t;
+
 //getters
 double getPI();
 
@@ -60,6 +66,11 @@ double calcCircleDiameter(circle_t);
 double calcCircleArc(circle_t, double theta);
 double calcCircleArea(circle_t);
 
+cylinder_t defineCylinder(circle_t, double);
+cylinder_t* defineCylinderAsPointer(circle_t, double);
+double calcCylinderVolume(cylinder_t);
+
+
 double calcFactorial(int n);
 double sine(double theta);
 double cosine(double theta);
@@ -68,6 +79,9 @@ double cosecant(double theta);
 double secant(double theta);
 double cotangent(double theta);
 double radiansToDegrees(double theta);
+
+
+
 
 //formulas
 double distanceFormula(point_t a, point_t b);

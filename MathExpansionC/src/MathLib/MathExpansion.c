@@ -201,6 +201,24 @@ double calcFactorial(int n){
 	return factor;
 }
 
+cylinder_t defineCylinder(circle_t circle, double height){
+	cylinder_t cylinder;
+	cylinder.circle = circle;
+	cylinder.height = absoluteVal(height);
+	return cylinder;
+}
+
+cylinder_t* defineCylinderAsPointer(circle_t circle, double height){
+	cylinder_t* cylinder = (cylinder_t*)malloc(sizeof(cylinder_t));;
+	cylinder->circle = circle;
+	cylinder->height = absoluteVal(height);
+	return cylinder;
+}
+
+double calcCylinderVolume(cylinder_t cylinder){
+	return (calcCircleArea(cylinder.circle)*cylinder.height);
+}
+
 //Name: sine
 //Description: Calculates an approximation of sine
 //Inputs: double theta value
