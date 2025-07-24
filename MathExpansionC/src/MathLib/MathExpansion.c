@@ -371,7 +371,8 @@ double radiansToDegrees(double theta){
 	return theta*(180.0f/getPI());
 }
 
-double calcLN(double x){
+//TODO needs to be rewritten
+double calcLN(double val){
 	return 0.0;
 }
 
