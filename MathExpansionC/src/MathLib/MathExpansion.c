@@ -373,11 +373,43 @@ double radiansToDegrees(double theta){
 
 //TODO needs to be rewritten
 double calcLN(double val){
-	return 0.0;
-}
+    if (val <= 0) {
+        return PRVNAN;  //undefined log
+    }
 
-double calcLog(double val){
-	return val/calcLN(10);
+    // approximate to 0 if close to 1
+    if (val == 1) return 0;
+
+    double result = 0.0;
+
+    // normalize into the range of [1,2) for accuracy
+    int exponent = 0;
+    while (val >= 2.0) {
+        val /= 2.0;
+        exponent++;
+        result += 0.693147181; // round up log(2)
+    }
+    while (val < 1.0) {
+        val *= 2.0;
+        exponent--;
+        result -= 0.693147181; // round down log(2)
+    }
+
+    //set up for approximation
+    double fraction = (val - 1) / (val + 1);
+    double square = fraction * fraction;
+    double approximation = fraction;
+    double term = fraction;
+
+    //Apply ln taylor series for approximation
+    for (int i = 3; i <= 21; i += 2) {
+        term *= square;
+        approximation += term / i;
+    }
+
+    result += 2 * approximation;
+
+    return result;
 }
 
 //Name: distanceFormula
@@ -430,9 +462,32 @@ static double powerInt(double val, int nth){
 	return ret;
 }
 
+static double computeFrac(double exp){
+	long double res = 1.0;
+	long double term = 1.0;
+	for (int i=0; i<=50; ++i){
+		term *= exp / i;
+		res += term;
+	}
+	return res;
+}
+
 //TODO this needs to be fixed
 static double powerFrac(double val, double nth){
-	return 0.000;
+	if (val == 0){
+		return 0;
+	}
+	if (nth <= 0){
+		return PRVNAN;
+	}
+
+	double lnBase = calcLN(val);
+	if (lnBase == -1){
+		return -1;
+	}
+
+	double result = computeFrac(nth*lnBase);
+	return result;
 }
 
 //Name: powerNth
