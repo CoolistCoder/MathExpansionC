@@ -372,28 +372,7 @@ double radiansToDegrees(double theta){
 }
 
 double calcLN(double x){
-    if (x <= 0) {
-        return -1;  // ln is undefined for non-positive values
-    }
-
-    double low = 0.0;
-    double high = x > 1 ? x : 1.0;
-    double mid = 0.0;
-    double epsilon = 0.000001;  // Adjust precision
-
-    // Perform binary search to approximate ln(x)
-    while (high - low > epsilon) {
-        mid = (low + high) / 2.0;
-        double exp_mid = powerNth(2.718281828459045, mid);  // Use a more accurate e value
-
-        if (exp_mid > x) {
-            high = mid;
-        } else {
-            low = mid;
-        }
-    }
-
-    return mid;  // Return the best estimate of ln(x)
+	return 0.0;
 }
 
 double calcLog(double val){
@@ -439,20 +418,20 @@ double squareRoot(double val){
 }
 
 static double powerInt(double val, int nth){
-	double ret = 1.0; //begin with value of 1
-	if (nth < 0){		//set up reciprocal if negative
-		val = 1/val;
-		nth *= -1;
+	double ret = 1.0;
+	int isNeg = nth < 0;
+	if (isNeg){
+		nth = 1/nth;
 	}
-
-	while (nth > 0){
-		if (nth % 2 == 1){ //mult into the return value
-			ret *= val;
-		}
-		val *= val;		//mult val by square
-		nth /= 2;		//divide the nth in half
+	for (int i=0; i<nth; ++i){
+		ret *= val;
 	}
 	return ret;
+}
+
+//TODO this needs to be fixed
+static double powerFrac(double val, double nth){
+	return 0.000;
 }
 
 //Name: powerNth
@@ -461,24 +440,12 @@ static double powerInt(double val, int nth){
 //Outputs: double value to the nth power
 //Side Effects: n/a
 double powerNth(double val, double nth){
-
-	if (val == 0 && nth <= 0){
-		return PRVNAN;
+	if (nth == (int) nth){
+		return powerInt(val, (int)nth);
 	}
-
-	if (nth < 0){
-		val = 1/val;
-		nth = -nth;
+	else{
+		return powerFrac(val, nth);
 	}
-
-	if (nth == (int)(nth)){
-		return powerInt(val, (int)(nth));
-	}
-
-	int integerPart = (int)nth;
-	int fractionPart = nth - integerPart;
-	double root = NthRoot(val, integerPart);
-	return powerInt(root, (int)(fractionPart*100));
 }
 
 //Name: NthRoot
