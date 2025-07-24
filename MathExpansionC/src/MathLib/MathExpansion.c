@@ -3,14 +3,15 @@
 //NAN definition
 #define PRVNAN (*(double*)((uint64_t[]){0x7FF8000000000000ULL}))
 #define PRVPI (double)(3.14159265359) //define as macro to assign label to value
-#define PRVEULER (double)(2.718281828459);
+#define PRVEULER (double)(2.718281828459045);
 
 typedef enum errcode_e{
 	NO_ERR = 0,				//no error
 	DIVIDE_BY_ZERO,			//divide by zero error
 	SQUAREROOT_NEGATIVE,	//square root of negative error
 	ZERO_ROOT,				//zeroth root doesn't exist
-	NOT_A_TRIANGLE			//values do not represent a triangle
+	NOT_A_TRIANGLE,			//values do not represent a triangle
+	CANNOT_BE_NEGATIVE		//value cannot be negative
 }errcode_e;
 
 static errcode_e glblErrCode = NO_ERR; //global error code
@@ -60,6 +61,9 @@ static const char* getErrorString(){
 		break;
 	case ZERO_ROOT:
 		return "ZERO ROOTS DON'T EXIST";
+		break;
+	case CANNOT_BE_NEGATIVE:
+		return "THE VALUE PROVIDED CAN'T BE NEGATIVE";
 		break;
 	case NO_ERR:
 		return "NO ERROR";
@@ -367,6 +371,35 @@ double radiansToDegrees(double theta){
 	return theta*(180.0f/getPI());
 }
 
+double calcLN(double x){
+    if (x <= 0) {
+        return -1;  // ln is undefined for non-positive values
+    }
+
+    double low = 0.0;
+    double high = x > 1 ? x : 1.0;
+    double mid = 0.0;
+    double epsilon = 0.000001;  // Adjust precision
+
+    // Perform binary search to approximate ln(x)
+    while (high - low > epsilon) {
+        mid = (low + high) / 2.0;
+        double exp_mid = powerNth(2.718281828459045, mid);  // Use a more accurate e value
+
+        if (exp_mid > x) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+    }
+
+    return mid;  // Return the best estimate of ln(x)
+}
+
+double calcLog(double val){
+	return val/calcLN(10);
+}
+
 //Name: distanceFormula
 //Description: calculates the distance between two points
 //Inputs: Two points a and b
@@ -405,12 +438,7 @@ double squareRoot(double val){
 	return NthRoot(val, 2.0);
 }
 
-//Name: powerNth
-//Description: retrieves the nth power of a number
-//Inputs: Double value, int nth power
-//Outputs: double value to the nth power
-//Side Effects: n/a
-double powerNth(double val, int nth){
+static double powerInt(double val, int nth){
 	double ret = 1.0; //begin with value of 1
 	if (nth < 0){		//set up reciprocal if negative
 		val = 1/val;
@@ -425,6 +453,32 @@ double powerNth(double val, int nth){
 		nth /= 2;		//divide the nth in half
 	}
 	return ret;
+}
+
+//Name: powerNth
+//Description: retrieves the nth power of a number
+//Inputs: Double value, int nth power
+//Outputs: double value to the nth power
+//Side Effects: n/a
+double powerNth(double val, double nth){
+
+	if (val == 0 && nth <= 0){
+		return PRVNAN;
+	}
+
+	if (nth < 0){
+		val = 1/val;
+		nth = -nth;
+	}
+
+	if (nth == (int)(nth)){
+		return powerInt(val, (int)(nth));
+	}
+
+	int integerPart = (int)nth;
+	int fractionPart = nth - integerPart;
+	double root = NthRoot(val, integerPart);
+	return powerInt(root, (int)(fractionPart*100));
 }
 
 //Name: NthRoot
@@ -476,6 +530,22 @@ double absoluteVal(double val){
 		return val*-1.0;
 	}
 	return val;
+}
+
+double floorVal(double val){
+	if (val==(int)(val)){
+		return val;
+	}
+
+	if (val<0){
+		return (int)(val-1);
+	}
+
+	return (int)(val);
+}
+
+double ceilingVal(double val){
+
 }
 
 //Name: roundToNearestPrecision
