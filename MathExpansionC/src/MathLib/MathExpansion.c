@@ -412,6 +412,10 @@ double calcLN(double val){
     return result;
 }
 
+double calcLog(double val){
+	return calcLN(val)/calcLN(10);
+}
+
 //Name: distanceFormula
 //Description: calculates the distance between two points
 //Inputs: Two points a and b
@@ -452,9 +456,9 @@ double squareRoot(double val){
 
 static double powerInt(double val, int nth){
 	double ret = 1.0;
-	int isNeg = nth < 0;
-	if (isNeg){
-		nth = 1/nth;
+	if (nth < 0){
+		nth = -nth;
+		nth = 1.0/val;
 	}
 	for (int i=0; i<nth; ++i){
 		ret *= val;
