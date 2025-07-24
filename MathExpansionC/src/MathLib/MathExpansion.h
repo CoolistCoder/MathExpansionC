@@ -59,6 +59,7 @@ typedef struct cylinder_t{
 
 //getters
 double getPI();
+double getEuler();
 
 point_t definePoint(double, double);
 point_t* definePointAsPointer(double, double);

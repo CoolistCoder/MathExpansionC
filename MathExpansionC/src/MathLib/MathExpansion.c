@@ -79,6 +79,15 @@ double getPI(){
 	return PRVPI;
 }
 
+//Name: getEuler
+//Description: Returns Euler macro as double
+//Inputs: none
+//Outputs: Euler as double
+//Side Effects: n/a
+double getEuler(){
+	return PRVEULER;
+}
+
 //Name: definePoint
 //Description: Defines a point with X and Y coordinates
 //Inputs: double x position, double y position
