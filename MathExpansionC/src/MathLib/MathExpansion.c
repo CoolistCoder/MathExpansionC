@@ -3,6 +3,7 @@
 //NAN definition
 #define PRVNAN (*(double*)((uint64_t[]){0x7FF8000000000000ULL}))
 #define PRVPI (double)(3.14159265359) //define as macro to assign label to value
+#define PRVEULER (double)(2.718281828459);
 
 typedef enum errcode_e{
 	NO_ERR = 0,				//no error
