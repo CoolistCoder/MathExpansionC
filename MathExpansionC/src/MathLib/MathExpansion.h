@@ -89,7 +89,8 @@ double secant(double theta);
 double cotangent(double theta);
 double radiansToDegrees(double theta);
 
-
+double calcLN(double x);
+double calcLog(double val);
 
 
 //formulas
@@ -100,9 +101,11 @@ point_t midpointFormula(point_t a, point_t b);
 //utils
 double square(double val);
 double squareRoot(double val);
-double powerNth(double val, int nth);
+double powerNth(double val, double nth);
 double NthRoot(double val, double nth);
 double absoluteVal(double val);
+double floorVal(double val);
+double ceilingVal(double val);
 double roundToNearestPrecision(double val, double precision);
 double roundToNearest(double val, prec_e precision);
 double getRoundPlace(prec_e precision);

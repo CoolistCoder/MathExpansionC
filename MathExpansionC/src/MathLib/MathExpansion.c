@@ -3,14 +3,15 @@
 //NAN definition
 #define PRVNAN (*(double*)((uint64_t[]){0x7FF8000000000000ULL}))
 #define PRVPI (double)(3.14159265359) //define as macro to assign label to value
-#define PRVEULER (double)(2.718281828459);
+#define PRVEULER (double)(2.718281828459045);
 
 typedef enum errcode_e{
 	NO_ERR = 0,				//no error
 	DIVIDE_BY_ZERO,			//divide by zero error
 	SQUAREROOT_NEGATIVE,	//square root of negative error
 	ZERO_ROOT,				//zeroth root doesn't exist
-	NOT_A_TRIANGLE			//values do not represent a triangle
+	NOT_A_TRIANGLE,			//values do not represent a triangle
+	CANNOT_BE_NEGATIVE		//value cannot be negative
 }errcode_e;
 
 static errcode_e glblErrCode = NO_ERR; //global error code
@@ -60,6 +61,9 @@ static const char* getErrorString(){
 		break;
 	case ZERO_ROOT:
 		return "ZERO ROOTS DON'T EXIST";
+		break;
+	case CANNOT_BE_NEGATIVE:
+		return "THE VALUE PROVIDED CAN'T BE NEGATIVE";
 		break;
 	case NO_ERR:
 		return "NO ERROR";
@@ -367,6 +371,51 @@ double radiansToDegrees(double theta){
 	return theta*(180.0f/getPI());
 }
 
+//TODO needs to be rewritten
+double calcLN(double val){
+    if (val <= 0) {
+        return PRVNAN;  //undefined log
+    }
+
+    // approximate to 0 if close to 1
+    if (val == 1) return 0;
+
+    double result = 0.0;
+
+    // normalize into the range of [1,2) for accuracy
+    int exponent = 0;
+    while (val >= 2.0) {
+        val /= 2.0;
+        exponent++;
+        result += 0.693147181; // round up log(2)
+    }
+    while (val < 1.0) {
+        val *= 2.0;
+        exponent--;
+        result -= 0.693147181; // round down log(2)
+    }
+
+    //set up for approximation
+    double fraction = (val - 1) / (val + 1);
+    double square = fraction * fraction;
+    double approximation = fraction;
+    double term = fraction;
+
+    //Apply ln taylor series for approximation
+    for (int i = 3; i <= 21; i += 2) {
+        term *= square;
+        approximation += term / i;
+    }
+
+    result += 2 * approximation;
+
+    return result;
+}
+
+double calcLog(double val){
+	return calcLN(val)/calcLN(10);
+}
+
 //Name: distanceFormula
 //Description: calculates the distance between two points
 //Inputs: Two points a and b
@@ -405,26 +454,59 @@ double squareRoot(double val){
 	return NthRoot(val, 2.0);
 }
 
+static double powerInt(double val, int nth){
+	double ret = 1.0;
+	if (nth < 0){
+		nth = -nth;
+		nth = 1.0/val;
+	}
+	for (int i=0; i<nth; ++i){
+		ret *= val;
+	}
+	return ret;
+}
+
+static double computeFrac(double exp){
+	long double res = 1.0;
+	long double term = 1.0;
+	for (int i=0; i<=50; ++i){
+		term *= exp / i;
+		res += term;
+	}
+	return res;
+}
+
+//TODO this needs to be fixed
+static double powerFrac(double val, double nth){
+	if (val == 0){
+		return 0;
+	}
+	if (nth <= 0){
+		return PRVNAN;
+	}
+
+	double lnBase = calcLN(val);
+	if (lnBase == -1){
+		return -1;
+	}
+
+	double result = computeFrac(nth*lnBase);
+	return result;
+}
+
 //Name: powerNth
 //Description: retrieves the nth power of a number
 //Inputs: Double value, int nth power
 //Outputs: double value to the nth power
 //Side Effects: n/a
-double powerNth(double val, int nth){
-	double ret = 1.0; //begin with value of 1
-	if (nth < 0){		//set up reciprocal if negative
-		val = 1/val;
-		nth *= -1;
+double powerNth(double val, double nth){
+	if (nth == (int) nth){
+		return powerInt(val, (int)nth);
 	}
-
-	while (nth > 0){
-		if (nth % 2 == 1){ //mult into the return value
-			ret *= val;
-		}
-		val *= val;		//mult val by square
-		nth /= 2;		//divide the nth in half
+	else{
+		return powerInt(val, (int)nth);
+		//return powerFrac(val, nth);
 	}
-	return ret;
 }
 
 //Name: NthRoot
@@ -476,6 +558,22 @@ double absoluteVal(double val){
 		return val*-1.0;
 	}
 	return val;
+}
+
+double floorVal(double val){
+	if (val==(int)(val)){
+		return val;
+	}
+
+	if (val<0){
+		return (int)(val-1);
+	}
+
+	return (int)(val);
+}
+
+double ceilingVal(double val){
+
 }
 
 //Name: roundToNearestPrecision
