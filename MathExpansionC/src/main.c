@@ -6,7 +6,7 @@
 int main(void) {
 
 
-	printf("%.5lf", powerNth(2, 3.5));
+	printf("%.2lf", calcLN(powerNth(getEuler(), 3)));
 
 	return EXIT_SUCCESS;
 }
