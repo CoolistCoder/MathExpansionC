@@ -6,7 +6,7 @@
 int main(void) {
 
 
-	printf("%.5lf", calcLog(1000L));
+	printf("%.5lf", powerNth(2, 3.5));
 
 	return EXIT_SUCCESS;
 }

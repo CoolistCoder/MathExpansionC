@@ -504,7 +504,8 @@ double powerNth(double val, double nth){
 		return powerInt(val, (int)nth);
 	}
 	else{
-		return powerFrac(val, nth);
+		return powerInt(val, (int)nth);
+		//return powerFrac(val, nth);
 	}
 }
 
