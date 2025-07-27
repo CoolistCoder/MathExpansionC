@@ -78,6 +78,8 @@ cylinder_t defineCylinder(circle_t, double);
 cylinder_t* defineCylinderAsPointer(circle_t, double);
 double calcCylinderVolume(cylinder_t);
 
+double calcSphereVolume(circle_t);
+
 ellipse_t defineEllipse(point_t, double, double);
 
 double calcFactorial(int n);

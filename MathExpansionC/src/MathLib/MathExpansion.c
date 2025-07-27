@@ -233,6 +233,10 @@ double calcCylinderVolume(cylinder_t cylinder){
 	return (calcCircleArea(cylinder.circle)*cylinder.height);
 }
 
+double calcSphereVolume(circle_t circle){
+	return (4.0/3.0)*getPI()*powerNth(circle.radius, 3);
+}
+
 
 ellipse_t defineEllipse(point_t center, double xAxis, double yAxis){
 	ellipse_t ellipse;

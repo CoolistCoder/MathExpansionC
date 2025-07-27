@@ -4,8 +4,6 @@
 #include <math.h>
 
 int main(void) {
-	printf("%.2lf\n", ceilingVal(3.14));
-	printf("%.2lf\n", floorVal(3.14));
-	printf("%.2lf\n", absoluteVal(-3.14));
+	printf("%.2lf\n", calcSphereVolume(defineCircle(definePoint(0, 0), 25)));
 	return EXIT_SUCCESS;
 }
