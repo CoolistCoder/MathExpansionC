@@ -573,7 +573,15 @@ double floorVal(double val){
 }
 
 double ceilingVal(double val){
+	if (val==(int)(val)){
+		return val;
+	}
 
+	if (val>0){
+		return (int)(val+1);
+	}
+
+	return (int)(val);
 }
 
 //Name: roundToNearestPrecision
