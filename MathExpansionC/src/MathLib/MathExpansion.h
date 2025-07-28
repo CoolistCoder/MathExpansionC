@@ -38,6 +38,12 @@ typedef struct triangle_t{
 	point_t C;
 }triangle_t;
 
+//definition of a square with a center point and width and height
+typedef struct rect_t{
+	point_t center;
+	double width, height;
+}rect_t;
+
 //definition of a circle with Point and Radius
 typedef struct circle_t{
 	point_t center;
@@ -67,6 +73,11 @@ point_t* definePointAsPointer(double, double);
 triangle_t defineTriangle(point_t, point_t, point_t);
 triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
 
+rect_t defineRect(point_t, double, double);
+rect_t* defineRectAsPointer(point_t, double, double);
+rect_t defineSquare(point_t, double);
+rect_t* defineSquareAsPointer(point_t, double);
+
 circle_t defineCircle(point_t newpoint, double radius);
 circle_t* defineCircleAsPointer(point_t newpoint, double radius);
 double calcCircleCircumference(circle_t);
@@ -79,6 +90,7 @@ cylinder_t* defineCylinderAsPointer(circle_t, double);
 double calcCylinderVolume(cylinder_t);
 
 double calcSphereVolume(circle_t);
+double calcSphereSurfaceArea(circle_t);
 
 ellipse_t defineEllipse(point_t, double, double);
 

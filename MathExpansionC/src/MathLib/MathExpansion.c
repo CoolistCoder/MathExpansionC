@@ -142,6 +142,32 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
+rect_t defineRect(point_t center, double width, double height){
+	rect_t rect;
+	rect.center = center;
+	rect.width = width;
+	rect.height = height;
+	return rect;
+}
+
+rect_t* defineRectAsPointer(point_t center, double width, double height){
+	rect_t* rect = (rect_t*)malloc(sizeof(rect_t));
+	rect->center = center;
+	rect->width = width;
+	rect->height = height;
+	return rect;
+}
+
+rect_t defineSquare(point_t center, double size){
+	rect_t rect = defineRect(center, size, size);
+	return rect;
+}
+
+rect_t* defineSquareAsPointer(point_t center, double size){
+	rect_t* rect = defineRectAsPointer(center, size, size);
+	return rect;
+}
+
 //Name: defineCircle
 //Description: Defines a circle with point center and radius r
 //Inputs: point newpoint (center), double radius (r)
@@ -235,6 +261,10 @@ double calcCylinderVolume(cylinder_t cylinder){
 
 double calcSphereVolume(circle_t circle){
 	return (4.0/3.0)*getPI()*powerNth(circle.radius, 3);
+}
+
+double calcSphereSurfaceArea(circle_t circle){
+	return 4*getPI()*square(circle.radius);
 }
 
 
