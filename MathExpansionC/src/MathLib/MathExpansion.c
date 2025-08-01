@@ -168,6 +168,34 @@ rect_t* defineSquareAsPointer(point_t center, double size){
 	return rect;
 }
 
+rect_t defineRect3d(point_t center, double width, double height, double depth){
+	rect3d_t rect;
+	rect.center = center;
+	rect.width = width;
+	rect.height = height;
+	rect.depth = depth;
+	return rect;
+}
+
+rect_t* defineRect3dAsPointer(point_t center, double width, double height, double depth){
+	rect3d_t* rect = (rect3d_t*)malloc(sizeof(rect3d_t));
+	rect->center = center;
+	rect->width = width;
+	rect->height = height;
+	rect->depth = depth;
+	return rect;
+}
+
+rect_t defineSquare(point_t center, double size){
+	rect_t rect = defineRect(center, size, size);
+	return rect;
+}
+
+rect_t* defineSquareAsPointer(point_t center, double size){
+	rect_t* rect = defineRectAsPointer(center, size, size);
+	return rect;
+}
+
 //Name: defineCircle
 //Description: Defines a circle with point center and radius r
 //Inputs: point newpoint (center), double radius (r)

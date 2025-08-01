@@ -31,6 +31,12 @@ typedef struct point_t{
 	double x, y;
 }point_t;
 
+//definition of a point with x y z coordinates
+typedef struct point3d_t{
+	double x, y, z;
+}point3d_t;
+
+
 //definition of a triangle with points A, B, and C
 typedef struct triangle_t{
 	point_t A;
@@ -84,6 +90,10 @@ rect_t* defineRectAsPointer(point_t, double, double);
 rect_t defineSquare(point_t, double);
 rect_t* defineSquareAsPointer(point_t, double);
 
+rect3d_t defineRect3d(point_t, double, double, double);
+rect3d_t* defineRect3dAsPointer(point_t, double, double, double);
+rect3d_t defineCube(point_t, double);
+rect3d_t* defineCubeAsPointer(point_t, double);
 
 
 circle_t defineCircle(point_t newpoint, double radius);
