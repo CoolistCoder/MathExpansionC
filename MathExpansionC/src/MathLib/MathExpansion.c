@@ -163,12 +163,12 @@ rect_t defineSquare(point_t center, double size){
 	return rect;
 }
 
-rect_t* defineSquareAsPointer(point_t center, double size){
+rect_t* defineSquareAsPointer(point3d_t center, double size){
 	rect_t* rect = defineRectAsPointer(center, size, size);
 	return rect;
 }
 
-rect_t defineRect3d(point_t center, double width, double height, double depth){
+rect_t defineRect3d(point3d_t center, double width, double height, double depth){
 	rect3d_t rect;
 	rect.center = center;
 	rect.width = width;
@@ -177,7 +177,7 @@ rect_t defineRect3d(point_t center, double width, double height, double depth){
 	return rect;
 }
 
-rect_t* defineRect3dAsPointer(point_t center, double width, double height, double depth){
+rect_t* defineRect3dAsPointer(point3d_t center, double width, double height, double depth){
 	rect3d_t* rect = (rect3d_t*)malloc(sizeof(rect3d_t));
 	rect->center = center;
 	rect->width = width;

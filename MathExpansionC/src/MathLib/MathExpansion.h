@@ -90,10 +90,10 @@ rect_t* defineRectAsPointer(point_t, double, double);
 rect_t defineSquare(point_t, double);
 rect_t* defineSquareAsPointer(point_t, double);
 
-rect3d_t defineRect3d(point_t, double, double, double);
-rect3d_t* defineRect3dAsPointer(point_t, double, double, double);
-rect3d_t defineCube(point_t, double);
-rect3d_t* defineCubeAsPointer(point_t, double);
+rect3d_t defineRect3d(point3d_t, double, double, double);
+rect3d_t* defineRect3dAsPointer(point3d_t, double, double, double);
+rect3d_t defineCube(point3d_t, double);
+rect3d_t* defineCubeAsPointer(point3d_t, double);
 
 
 circle_t defineCircle(point_t newpoint, double radius);
