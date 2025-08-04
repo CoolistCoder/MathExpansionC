@@ -81,6 +81,8 @@ double getEuler();
 
 point_t definePoint(double, double);
 point_t* definePointAsPointer(double, double);
+point_t definePoint3d(double, double, double);
+point_t* definePoint3dAsPointer(double, double, double);
 
 triangle_t defineTriangle(point_t, point_t, point_t);
 triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
