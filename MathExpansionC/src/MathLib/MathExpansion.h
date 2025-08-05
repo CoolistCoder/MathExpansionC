@@ -52,7 +52,7 @@ typedef struct rect_t{
 
 //definition of a 3D rectangle with a bottom left corner point and width and height
 typedef struct rect3d_t{
-	point_t corner;
+	point3d_t corner;
 	double width, height, depth;
 }rect3d_t;
 
@@ -81,8 +81,8 @@ double getEuler();
 
 point_t definePoint(double, double);
 point_t* definePointAsPointer(double, double);
-point_t definePoint3d(double, double, double);
-point_t* definePoint3dAsPointer(double, double, double);
+point3d_t definePoint3d(double, double, double);
+point3d_t* definePoint3dAsPointer(double, double, double);
 
 triangle_t defineTriangle(point_t, point_t, point_t);
 triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);

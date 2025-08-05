@@ -121,7 +121,7 @@ point_t* definePointAsPointer(double x, double y){
 //Inputs: double x position, double y position, double Z position
 //Outputs: new point3d object
 //Side Effects: n/a
-point_t definePoint3d(double x, double y, double z){
+point3d_t definePoint3d(double x, double y, double z){
 	point3d_t newpoint;
 	newpoint.x = x;
 	newpoint.y = y;
@@ -134,7 +134,7 @@ point_t definePoint3d(double x, double y, double z){
 //Inputs: double x position, double y position, double Z position
 //Outputs: new pointer to a point3d object
 //Side Effects: n/a
-point_t* definePoint3dAsPointer(double x, double y, double z){
+point3d_t* definePoint3dAsPointer(double x, double y, double z){
 	point3d_t* newpoint = (point3d_t*)malloc(sizeof(point3d_t));
 	newpoint->x = x;
 	newpoint->y = y;
@@ -170,7 +170,7 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 
 rect_t defineRect(point_t corner, double width, double height){
 	rect_t rect;
-	rect.center = corner;
+	rect.corner = corner;
 	rect.width = width;
 	rect.height = height;
 	return rect;
@@ -178,7 +178,7 @@ rect_t defineRect(point_t corner, double width, double height){
 
 rect_t* defineRectAsPointer(point_t corner, double width, double height){
 	rect_t* rect = (rect_t*)malloc(sizeof(rect_t));
-	rect->center = corner;
+	rect->corner = corner;
 	rect->width = width;
 	rect->height = height;
 	return rect;
@@ -194,7 +194,7 @@ rect_t* defineSquareAsPointer(point_t corner, double size){
 	return rect;
 }
 
-rect_t defineRect3d(point3d_t corner, double width, double height, double depth){
+rect3d_t defineRect3d(point3d_t corner, double width, double height, double depth){
 	rect3d_t rect;
 	rect.corner = corner;
 	rect.width = width;
@@ -203,22 +203,22 @@ rect_t defineRect3d(point3d_t corner, double width, double height, double depth)
 	return rect;
 }
 
-rect_t* defineRect3dAsPointer(point3d_t corner, double width, double height, double depth){
+rect3d_t* defineRect3dAsPointer(point3d_t corner, double width, double height, double depth){
 	rect3d_t* rect = (rect3d_t*)malloc(sizeof(rect3d_t));
-	rect->center = corner;
+	rect->corner = corner;
 	rect->width = width;
 	rect->height = height;
 	rect->depth = depth;
 	return rect;
 }
 
-rect_t defineCube(point3d_t corner, double size){
-	rect_t rect = defineRect(corner, size, size);
+rect3d_t defineCube(point3d_t corner, double size){
+	rect3d_t rect = defineRect3d(corner, size, size, size);
 	return rect;
 }
 
-rect_t* defineCubeAsPointer(point3d_t corner, double size){
-	rect_t* rect = defineRectAsPointer(corner, size, size);
+rect3d_t* defineCubeAsPointer(point3d_t corner, double size){
+	rect3d_t* rect = defineRect3dAsPointer(corner, size, size, size);
 	return rect;
 }
 
