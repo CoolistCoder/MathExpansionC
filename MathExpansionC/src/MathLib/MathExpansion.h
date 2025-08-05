@@ -44,15 +44,15 @@ typedef struct triangle_t{
 	point_t C;
 }triangle_t;
 
-//definition of a rectangle with a center point and width and height
+//definition of a rectangle with a bottom left corner point and width and height
 typedef struct rect_t{
-	point_t center;
+	point_t corner;
 	double width, height;
 }rect_t;
 
-//definition of a 3D rectangle with a center point and width and height
+//definition of a 3D rectangle with a bottom left corner point and width and height
 typedef struct rect3d_t{
-	point_t center;
+	point_t corner;
 	double width, height, depth;
 }rect3d_t;
 

@@ -189,14 +189,14 @@ rect_t defineSquare(point_t corner, double size){
 	return rect;
 }
 
-rect_t* defineSquareAsPointer(point3d_t corner, double size){
-	rect_t* rect = defineRect3dAsPointer(corner, size, size, size);
+rect_t* defineSquareAsPointer(point_t corner, double size){
+	rect_t* rect = defineRectAsPointer(corner, size, size);
 	return rect;
 }
 
 rect_t defineRect3d(point3d_t corner, double width, double height, double depth){
 	rect3d_t rect;
-	rect.center = corner;
+	rect.corner = corner;
 	rect.width = width;
 	rect.height = height;
 	rect.depth = depth;
