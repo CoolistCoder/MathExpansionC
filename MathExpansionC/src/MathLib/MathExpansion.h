@@ -44,15 +44,15 @@ typedef struct triangle_t{
 	point_t C;
 }triangle_t;
 
-//definition of a rectangle with a center point and width and height
+//definition of a rectangle with a bottom left corner point and width and height
 typedef struct rect_t{
-	point_t center;
+	point_t corner;
 	double width, height;
 }rect_t;
 
-//definition of a 3D rectangle with a center point and width and height
+//definition of a 3D rectangle with a bottom left corner point and width and height
 typedef struct rect3d_t{
-	point_t center;
+	point3d_t corner;
 	double width, height, depth;
 }rect3d_t;
 
@@ -81,6 +81,8 @@ double getEuler();
 
 point_t definePoint(double, double);
 point_t* definePointAsPointer(double, double);
+point3d_t definePoint3d(double, double, double);
+point3d_t* definePoint3dAsPointer(double, double, double);
 
 triangle_t defineTriangle(point_t, point_t, point_t);
 triangle_t* defineTriangleAsPointer(point_t, point_t, point_t);
@@ -90,10 +92,10 @@ rect_t* defineRectAsPointer(point_t, double, double);
 rect_t defineSquare(point_t, double);
 rect_t* defineSquareAsPointer(point_t, double);
 
-rect3d_t defineRect3d(point_t, double, double, double);
-rect3d_t* defineRect3dAsPointer(point_t, double, double, double);
-rect3d_t defineCube(point_t, double);
-rect3d_t* defineCubeAsPointer(point_t, double);
+rect3d_t defineRect3d(point3d_t, double, double, double);
+rect3d_t* defineRect3dAsPointer(point3d_t, double, double, double);
+rect3d_t defineCube(point3d_t, double);
+rect3d_t* defineCubeAsPointer(point3d_t, double);
 
 
 circle_t defineCircle(point_t newpoint, double radius);
