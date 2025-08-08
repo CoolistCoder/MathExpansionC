@@ -168,6 +168,11 @@ triangle_t* defineTriangleAsPointer(point_t A, point_t B, point_t C){
 	return newtriangle;
 }
 
+//Name: defineRect
+//Description: Defines a rectangle object by its bottom left corner and width X height
+//Inputs: Corner point, double width, double height
+//Outputs: New rectangle object
+//Side Effects: n/a
 rect_t defineRect(point_t corner, double width, double height){
 	rect_t rect;
 	rect.corner = corner;
@@ -176,6 +181,11 @@ rect_t defineRect(point_t corner, double width, double height){
 	return rect;
 }
 
+//Name: defineRectAsPointer
+//Description: Defines a pointer to rectangle object by its bottom left corner and width X height
+//Inputs: Corner point, double width, double height
+//Outputs: New pointer to rectangle object
+//Side Effects: n/a
 rect_t* defineRectAsPointer(point_t corner, double width, double height){
 	rect_t* rect = (rect_t*)malloc(sizeof(rect_t));
 	rect->corner = corner;
@@ -184,11 +194,21 @@ rect_t* defineRectAsPointer(point_t corner, double width, double height){
 	return rect;
 }
 
+//Name: defineSquare
+//Description: Defines a rectangle object by its bottom left corner and width*height
+//Inputs: Corner point, double size
+//Outputs: New rectangle object
+//Side Effects: n/a
 rect_t defineSquare(point_t corner, double size){
 	rect_t rect = defineRect(corner, size, size);
 	return rect;
 }
 
+//Name: defineSquareAsPointer
+//Description: Defines a pointer to rectangle object by its bottom left corner and width*height
+//Inputs: Corner point, double size
+//Outputs: New rectangle object
+//Side Effects: n/a
 rect_t* defineSquareAsPointer(point_t corner, double size){
 	rect_t* rect = defineRectAsPointer(corner, size, size);
 	return rect;
