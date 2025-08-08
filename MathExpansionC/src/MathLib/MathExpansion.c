@@ -545,6 +545,7 @@ double radiansToDegrees(double theta){
 //Outputs: natural logarithm of val
 //Side Effects: n/a
 double calcLN(double val){
+	const double precisionValue = 0.693147181; //round precision
     if (val <= 0) {
         return PRVNAN;  //undefined log
     }
@@ -559,12 +560,12 @@ double calcLN(double val){
     while (val >= 2.0) {
         val /= 2.0;
         exponent++;
-        result += 0.693147181; // round up log(2)
+        result += precisionValue; // round up log(2)
     }
     while (val < 1.0) {
         val *= 2.0;
         exponent--;
-        result -= 0.693147181; // round down log(2)
+        result -= precisionValue; // round down log(2)
     }
 
     //set up for approximation
