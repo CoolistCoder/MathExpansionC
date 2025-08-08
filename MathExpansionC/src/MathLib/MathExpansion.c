@@ -214,6 +214,11 @@ rect_t* defineSquareAsPointer(point_t corner, double size){
 	return rect;
 }
 
+//Name: defineRect3d
+//Description: Defines a 3d rectangle object by its bottom left front corner and width x height x depth
+//Inputs: Corner point, double width, double height, double depth
+//Outputs: New 3d rectangle object
+//Side Effects: n/a
 rect3d_t defineRect3d(point3d_t corner, double width, double height, double depth){
 	rect3d_t rect;
 	rect.corner = corner;
@@ -223,6 +228,11 @@ rect3d_t defineRect3d(point3d_t corner, double width, double height, double dept
 	return rect;
 }
 
+//Name: defineRect3d
+//Description: Defines a pointer to a 3d rectangle object by its bottom left front corner and width x height x depth
+//Inputs: Corner point, double width, double height, double depth
+//Outputs: New pointer to 3d rectangle object
+//Side Effects: n/a
 rect3d_t* defineRect3dAsPointer(point3d_t corner, double width, double height, double depth){
 	rect3d_t* rect = (rect3d_t*)malloc(sizeof(rect3d_t));
 	rect->corner = corner;
@@ -232,11 +242,21 @@ rect3d_t* defineRect3dAsPointer(point3d_t corner, double width, double height, d
 	return rect;
 }
 
+//Name: defineCube
+//Description: Defines a 3d rectangle object by its bottom left front corner and width*height*depth
+//Inputs: Corner point, double size
+//Outputs: New 3d rectangle object
+//Side Effects: n/a
 rect3d_t defineCube(point3d_t corner, double size){
 	rect3d_t rect = defineRect3d(corner, size, size, size);
 	return rect;
 }
 
+//Name: defineCubeAsPointer
+//Description: Defines a pointer to a 3d rectangle object by its bottom left front corner and width*height*depth
+//Inputs: Corner point, double size
+//Outputs: New pointer to 3d rectangle object
+//Side Effects: n/a
 rect3d_t* defineCubeAsPointer(point3d_t corner, double size){
 	rect3d_t* rect = defineRect3dAsPointer(corner, size, size, size);
 	return rect;
@@ -315,6 +335,11 @@ double calcFactorial(int n){
 	return factor;
 }
 
+//Name: defineCylinder
+//Description: Defines a cylinder by a circle * height
+//Inputs: Circle object, double height
+//Outputs: New cylinder object
+//Side Effects: n/a
 cylinder_t defineCylinder(circle_t circle, double height){
 	cylinder_t cylinder;
 	cylinder.circle = circle;
@@ -322,6 +347,11 @@ cylinder_t defineCylinder(circle_t circle, double height){
 	return cylinder;
 }
 
+//Name: defineCylinderAsPointer
+//Description: Defines a pointer to a cylinder by a circle * height
+//Inputs: Circle object, double height
+//Outputs: New pointer to cylinder object
+//Side Effects: n/a
 cylinder_t* defineCylinderAsPointer(circle_t circle, double height){
 	cylinder_t* cylinder = (cylinder_t*)malloc(sizeof(cylinder_t));;
 	cylinder->circle = circle;
@@ -329,19 +359,38 @@ cylinder_t* defineCylinderAsPointer(circle_t circle, double height){
 	return cylinder;
 }
 
+//Name: calcCylinderVolume
+//Description: Returns the volume of a cylinder object
+//Inputs: Cylinder object
+//Outputs: double volume of the cylinder
+//Side Effects: n/a
 double calcCylinderVolume(cylinder_t cylinder){
 	return (calcCircleArea(cylinder.circle)*cylinder.height);
 }
 
+//Name: calcSphereVolume
+//Description: Returns the volume of a sphere object
+//Inputs: Sphere object
+//Outputs: double volume of the sphere
+//Side Effects: n/a
 double calcSphereVolume(circle_t circle){
 	return (4.0/3.0)*getPI()*powerNth(circle.radius, 3);
 }
 
+//Name: calcSphereSurfaceArea
+//Description: Returns the surface area of a sphere object
+//Inputs: Sphere object
+//Outputs: double surface area of the sphere
+//Side Effects: n/a
 double calcSphereSurfaceArea(circle_t circle){
 	return 4*getPI()*square(circle.radius);
 }
 
-
+//Name: defineEllipse
+//Description: Defines an ellipse object with a center point and x and y axis
+//Inputs: ellipse object, double x axis, double y axis
+//Outputs: New ellipse object
+//Side Effects: n/a
 ellipse_t defineEllipse(point_t center, double xAxis, double yAxis){
 	ellipse_t ellipse;
 	ellipse.center = center;
@@ -460,6 +509,11 @@ double secant(double theta){
 	return COS;
 }
 
+//Name: cotangent
+//Description: Calculates an approximation of cotangent
+//Inputs: double theta value
+//Outputs: double The approximation of cotangent
+//Side Effects: n/a
 double cotangent(double theta){
 	double TAN = tangent(theta);
 	if (TAN==0){
@@ -475,11 +529,21 @@ double cotangent(double theta){
 	return TAN;
 }
 
+//Name: radiansToDegrees
+//Description: Converts radians to degrees
+//Inputs: double theta value
+//Outputs: Degrees from the radians provided
+//Side Effects: n/a
 double radiansToDegrees(double theta){
 	return theta*(180.0f/getPI());
 }
 
-//TODO needs to be rewritten
+//TODO needs proper error implementation
+//Name: calcLN
+//Description: Calculates the natural logarithm based on val
+//Inputs: double value to calc
+//Outputs: natural logarithm of val
+//Side Effects: n/a
 double calcLN(double val){
     if (val <= 0) {
         return PRVNAN;  //undefined log
@@ -520,6 +584,11 @@ double calcLN(double val){
     return result;
 }
 
+//Name: calcLog
+//Description: Calculates the base 10 logarithm based on val
+//Inputs: double value to calc
+//Outputs: base 10 logarithm of val
+//Side Effects: n/a
 double calcLog(double val){
 	return calcLN(val)/calcLN(10);
 }
@@ -562,6 +631,7 @@ double squareRoot(double val){
 	return NthRoot(val, 2.0);
 }
 
+//powerInt used to calc power as integer
 static double powerInt(double val, int nth){
 	double ret = 1.0;
 	if (nth < 0){
@@ -574,6 +644,7 @@ static double powerInt(double val, int nth){
 	return ret;
 }
 
+//computeFrac used to calc power as fraction
 static double computeFrac(double exp){
 	long double res = 1.0;
 	long double term = 1.0;
@@ -612,6 +683,8 @@ double powerNth(double val, double nth){
 		return powerInt(val, (int)nth);
 	}
 	else{
+		//TODO replace this with commented out function
+		//when the implementation is complete
 		return powerInt(val, (int)nth);
 		//return powerFrac(val, nth);
 	}
@@ -668,6 +741,11 @@ double absoluteVal(double val){
 	return val;
 }
 
+//Name: floorVal
+//Description: Floor value of a number
+//Inputs: double value
+//Outputs: Floor value of double passed in
+//Side Effects: n/a
 double floorVal(double val){
 	if (val==(int)(val)){
 		return val;
@@ -680,6 +758,11 @@ double floorVal(double val){
 	return (int)(val);
 }
 
+//Name: ceilingVal
+//Description: Ceiling value of a number
+//Inputs: double value
+//Outputs: Ceiling value of double passed in
+//Side Effects: n/a
 double ceilingVal(double val){
 	if (val==(int)(val)){
 		return val;
