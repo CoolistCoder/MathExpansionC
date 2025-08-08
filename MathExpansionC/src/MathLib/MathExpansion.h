@@ -79,6 +79,7 @@ typedef struct cylinder_t{
 double getPI();
 double getEuler();
 
+//definition functions
 point_t definePoint(double, double);
 point_t* definePointAsPointer(double, double);
 point3d_t definePoint3d(double, double, double);
@@ -97,22 +98,25 @@ rect3d_t* defineRect3dAsPointer(point3d_t, double, double, double);
 rect3d_t defineCube(point3d_t, double);
 rect3d_t* defineCubeAsPointer(point3d_t, double);
 
-
 circle_t defineCircle(point_t newpoint, double radius);
 circle_t* defineCircleAsPointer(point_t newpoint, double radius);
+
+cylinder_t defineCylinder(circle_t, double);
+cylinder_t* defineCylinderAsPointer(circle_t, double);
+
+ellipse_t defineEllipse(point_t, double, double);
+
+
+//Calculation functions
 double calcCircleCircumference(circle_t);
 double calcCircleDiameter(circle_t);
 double calcCircleArc(circle_t, double theta);
 double calcCircleArea(circle_t);
 
-cylinder_t defineCylinder(circle_t, double);
-cylinder_t* defineCylinderAsPointer(circle_t, double);
 double calcCylinderVolume(cylinder_t);
 
 double calcSphereVolume(circle_t);
 double calcSphereSurfaceArea(circle_t);
-
-ellipse_t defineEllipse(point_t, double, double);
 
 double calcFactorial(int n);
 double sine(double theta);
